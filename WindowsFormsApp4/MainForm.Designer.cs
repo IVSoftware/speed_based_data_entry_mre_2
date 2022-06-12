@@ -37,6 +37,9 @@
             // 
             // dgv
             // 
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(0, 0);
             this.dgv.Name = "dgv";
@@ -47,6 +50,7 @@
             // 
             // buttonABC
             // 
+            this.buttonABC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonABC.Location = new System.Drawing.Point(12, 398);
             this.buttonABC.Name = "buttonABC";
             this.buttonABC.Size = new System.Drawing.Size(75, 40);
@@ -58,6 +62,7 @@
             // 
             // buttonCDE
             // 
+            this.buttonCDE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonCDE.Location = new System.Drawing.Point(93, 398);
             this.buttonCDE.Name = "buttonCDE";
             this.buttonCDE.Size = new System.Drawing.Size(75, 40);
@@ -69,6 +74,7 @@
             // 
             // buttonClear
             // 
+            this.buttonClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClear.Location = new System.Drawing.Point(670, 398);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(118, 40);
