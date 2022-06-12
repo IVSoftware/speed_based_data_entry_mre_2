@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.btnWorkaround = new System.Windows.Forms.CheckBox();
             this.buttonABC = new System.Windows.Forms.Button();
             this.buttonCDE = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -46,22 +45,9 @@
             this.dgv.Size = new System.Drawing.Size(800, 383);
             this.dgv.TabIndex = 0;
             // 
-            // btnWorkaround
-            // 
-            this.btnWorkaround.Appearance = System.Windows.Forms.Appearance.Button;
-            this.btnWorkaround.Location = new System.Drawing.Point(12, 403);
-            this.btnWorkaround.Name = "btnWorkaround";
-            this.btnWorkaround.Size = new System.Drawing.Size(207, 40);
-            this.btnWorkaround.TabIndex = 1;
-            this.btnWorkaround.TabStop = false;
-            this.btnWorkaround.Text = "Workaround is OFF";
-            this.btnWorkaround.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnWorkaround.UseVisualStyleBackColor = true;
-            this.btnWorkaround.CheckedChanged += new System.EventHandler(this.btnWorkaround_CheckedChanged);
-            // 
             // buttonABC
             // 
-            this.buttonABC.Location = new System.Drawing.Point(225, 403);
+            this.buttonABC.Location = new System.Drawing.Point(12, 398);
             this.buttonABC.Name = "buttonABC";
             this.buttonABC.Size = new System.Drawing.Size(75, 40);
             this.buttonABC.TabIndex = 2;
@@ -72,7 +58,7 @@
             // 
             // buttonCDE
             // 
-            this.buttonCDE.Location = new System.Drawing.Point(306, 403);
+            this.buttonCDE.Location = new System.Drawing.Point(93, 398);
             this.buttonCDE.Name = "buttonCDE";
             this.buttonCDE.Size = new System.Drawing.Size(75, 40);
             this.buttonCDE.TabIndex = 3;
@@ -83,7 +69,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(670, 403);
+            this.buttonClear.Location = new System.Drawing.Point(670, 398);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(118, 40);
             this.buttonClear.TabIndex = 4;
@@ -100,7 +86,6 @@
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonCDE);
             this.Controls.Add(this.buttonABC);
-            this.Controls.Add(this.btnWorkaround);
             this.Controls.Add(this.dgv);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -113,7 +98,6 @@
         #endregion
 
         public System.Windows.Forms.DataGridView dgv;
-        private System.Windows.Forms.CheckBox btnWorkaround;
         private System.Windows.Forms.Button buttonABC;
         private System.Windows.Forms.Button buttonCDE;
         private System.Windows.Forms.Button buttonClear;

@@ -17,116 +17,16 @@ namespace WindowsFormsApp4
         public MainForm()
         {
             InitializeComponent();
-            Load += Form1_Load;
-            dgv.EditingControlShowing += onEditingControlShowing;
-            dgv.CellBeginEdit += onCellBeginEdit;
-            dgv.CellEndEdit += onCellEndEdit;
-            dgv.CurrentCellChanged += onCurrentCellChanged;
-            dgv.CurrentCellDirtyStateChanged += onCurrentCellDirtyStateChanged;
-        }
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-        }
-
-        private void onCurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"{nameof(onCurrentCellDirtyStateChanged)} {dgv.IsCurrentCellDirty} {dgv.IsCurrentCellInEditMode}");
-        }
-
-        private void onCurrentCellChanged(object sender, EventArgs e)
-        {
-            if(dgv.CurrentCell == null)
-            {
-                Debug.WriteLine($"{nameof(onCurrentCellChanged)} null");
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(onCurrentCellChanged)} [{dgv.CurrentCell.ColumnIndex}, {dgv.CurrentCell.RowIndex}]");
-            }
-        }
-
-        private void onCellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            Debug.WriteLine(nameof(onCellBeginEdit));
-        }
-
-        private void onCellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            Debug.WriteLine(nameof(onCellEndEdit));
-        }
-
-        private void onEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if(e.Control is DataGridViewComboBoxEditingControl cbEdit)
-            {
-                CBEdit = cbEdit;
-            }
-        }
-        DataGridViewComboBoxEditingControl _cbEdit = null;
-        public DataGridViewComboBoxEditingControl CBEdit
-        {
-            get => _cbEdit;
-            set
-            {
-                if(!ReferenceEquals(_cbEdit, value))
-                {
-                    if(_cbEdit != null)
-                    {
-                        _cbEdit.GotFocus -= onCBEdit_GotFocus;
-                        _cbEdit.LostFocus -= onCBEdit_LostFocus;
-                        _cbEdit.KeyDown -= _cbEdit_KeyDown;
-                        _cbEdit.KeyUp -= _cbEdit_KeyUp;
-                        _cbEdit.PreviewKeyDown -= _cbEdit_PreviewKeyDown;
-                    }
-                    _cbEdit = value;
-                    if (_cbEdit != null)
-                    {
-                        _cbEdit.GotFocus += onCBEdit_GotFocus;
-                        _cbEdit.LostFocus += onCBEdit_LostFocus;
-                        _cbEdit.KeyDown += _cbEdit_KeyDown;
-                        _cbEdit.KeyUp += _cbEdit_KeyUp;
-                        _cbEdit.PreviewKeyDown += _cbEdit_PreviewKeyDown;
-                    }
-                }
-            }
-        }
-
-        private void _cbEdit_KeyUp(object sender, KeyEventArgs e)
-        {
-            Debug.WriteLine($"Key up '{e.KeyData}'");
-        }
-
-        private void _cbEdit_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            // Tab is not an input character by default so hook it here.
-            if(e.KeyData == Keys.Tab)
-            {
-                Debug.WriteLine($"Key down '{e.KeyData}'");
-            }
-        }
-
-        private void _cbEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            Debug.WriteLine($"Key down '{e.KeyData}'");
-        }
-
-        private void onCBEdit_GotFocus(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"CBEdit got focus with text='{_cbEdit.Text}'");
-        }
-
-        private void onCBEdit_LostFocus(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"CBEdit losing focus with text='{_cbEdit.Text}'");
         }
 #if true
         DataTable dtString1;
         DataTable dtString2;
         DataTable dtString3;
-        private void Form1_Load(object sender, EventArgs e)
+
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
             // create three combobox columns and put them side-by-side:
             // first column:
             DataGridViewComboBoxColumn dgvcbc1 = new DataGridViewComboBoxColumn();
@@ -252,21 +152,9 @@ namespace WindowsFormsApp4
                     {
                         dgv.Focus();
                     }
-                    bool first = true;
                     foreach (var key in keys)
                     {
                         SendKeys.SendWait($"{key}\t");
-                        if (first)
-                        {
-                            // Using SendKeys acts slightly different internally from
-                            // pressing and releasing physical keys. If the button
-                            // clicks are too fast, a new row might not create the way
-                            // it should. This line ensures the call value changes.
-                            // =======================================================
-                            // Force new row - fixes an artifact of automated testing.
-                            first = false;
-                            dgv.CurrentCell.Value = CBEdit.Text;
-                        }
                     }
                     if (dgv.Rows.Count == nRowsB4)
                     {
@@ -306,18 +194,6 @@ to work always.";
         private void buttonClear_Click(object sender, EventArgs e)
         {
             dgv.Rows.Clear();
-        }
-
-        private void btnWorkaround_CheckedChanged(object sender, EventArgs e)
-        {
-            if(btnWorkaround.Checked)
-            {
-                btnWorkaround.Text = "Workaround is ON";
-            }
-            else
-            {
-                btnWorkaround.Text = "Workaround is OFF";
-            }
         }
     }
 
